@@ -17,8 +17,8 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
-    credentials: true,
+    origin: ["https://expense-tracker-frontend-cqaztqoq5.vercel.app", "http://localhost:3000"],
+   credentials: true,
   })
 );
 app.use(helmet());
