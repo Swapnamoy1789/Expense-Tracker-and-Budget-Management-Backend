@@ -1,15 +1,16 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 
-dotenv.config(); // ✅ Load environment variables
+dotenv.config();
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("❌ DATABASE_URL is not defined in .env file");
-}
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialect: "mysql",  // ✅ Set dialect to MySQL
-  logging: false,    // Disable logging SQL queries
+const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
+  dialect: "mysql",
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Needed for Railway MySQL
+    },
+  },
 });
 
 export default sequelize;

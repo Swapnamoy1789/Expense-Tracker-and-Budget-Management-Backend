@@ -15,7 +15,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(express.json());
 
@@ -26,17 +31,17 @@ app.use("/api/budgets", budgetRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/reports", reportRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001; // Use dynamic port for deployment
 
 // Sync database and start server
 sequelize
   .sync({ alter: true })
   .then(() => {
-    console.log("Database & tables created!");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log("✅ Database & tables created!");
+    app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
   })
-  .catch((err) => console.error("Error syncing database:", err));
-  console.log("✅ Auth Routes Loaded:", authRoutes);
-  console.log("✅ Expense Routes Loaded:", expenseRoutes);
-  console.log("✅ Budget Routes Loaded:", budgetRoutes);
-  
+  .catch((err) => console.error("❌ Error syncing database:", err));
+
+console.log("✅ Auth Routes Loaded:", authRoutes);
+console.log("✅ Expense Routes Loaded:", expenseRoutes);
+console.log("✅ Budget Routes Loaded:", budgetRoutes);
