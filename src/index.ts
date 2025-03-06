@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["https://expense-tracker-frontend-cqaztqoq5.vercel.app", "http://localhost:3000"],
+    origin: ["https://expense-tracker-frontend-d5xohitwz.vercel.app", "http://localhost:3000"],
    credentials: true,
   })
 );
