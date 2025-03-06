@@ -45,3 +45,4 @@ sequelize
 console.log("✅ Auth Routes Loaded:", authRoutes);
 console.log("✅ Expense Routes Loaded:", expenseRoutes);
 console.log("✅ Budget Routes Loaded:", budgetRoutes);
+console.log("✅ JWT_SECRET Loaded:", process.env.JWT_SECRET ? "Exists ✅" : "Not Found ❌");
