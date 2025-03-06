@@ -28,11 +28,13 @@ export const register = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ token });
-  } catch (error) {
-    res.status(500).json({ error: "Server Error" });
+    res.status(201).json({ message: "User registered successfully", token });
+  } catch (error: any) {
+    console.error("🔥 Registration Error:", error.message || error);
+    res.status(500).json({ error: "Server Error", details: error.message || error });
   }
 };
+
 
 export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -52,8 +54,10 @@ export const login = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    res.json({ token });
-  } catch (error) {
-    res.status(500).json({ error: "Server Error" });
+    res.json({ message: "Login successful", token });
+  } catch (error: any) {
+    console.error("🔥 Login Error:", error.message || error);
+    res.status(500).json({ error: "Server Error", details: error.message || error });
   }
 };
+

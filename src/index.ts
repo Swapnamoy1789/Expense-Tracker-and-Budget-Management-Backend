@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["https://expense-tracker-frontend-livid-zeta.vercel.app/", "http://localhost:3000"],
+    origin: ["https://expense-tracker-frontend-livid-zeta.vercel.app"],
    credentials: true,
   })
 );
